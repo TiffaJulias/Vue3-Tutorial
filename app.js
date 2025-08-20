@@ -8,12 +8,13 @@ const app = Vue.createApp({
       age: 45,
       showBooks: true,
       books: [
-        { title: 'name of the wind', author: 'Patrick Rothfuss', age: 40 },
-        { title: 'the way of the kings', author: 'Brandon Sanderson', age: 45 },
-        { title: 'the final empire', author: 'Brandon Sanderson', age: 45 },
+        { title: 'name of the wind', author: 'Patrick Rothfuss', age: 40, img:'assets/1.png' },
+        { title: 'the way of the kings', author: 'Brandon Sanderson', age: 45,img:'assets/2.png' },
+        { title: 'the final empire', author: 'Brandon Sanderson', age: 45, img:'assets/3.png' },
       ],
       x: 0,
-      y: 0
+      y: 0,
+      url: 'http://www.thenetninja.co.uk'
     }
   },
   methods: {
