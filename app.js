@@ -7,6 +7,11 @@ const app = Vue.createApp({
       author: 'Brandon Sanderson',
       age: 45,
       showBooks: true,
+      books: [
+        { title: 'name of the wind', author: 'Patrick Rothfuss', age: 40 },
+        { title: 'the way of the kings', author: 'Brandon Sanderson', age: 45 },
+        { title: 'the final empire', author: 'Brandon Sanderson', age: 45 },
+      ],
       x: 0,
       y: 0
     }
