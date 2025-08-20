@@ -8,9 +8,9 @@ const app = Vue.createApp({
       age: 45,
       showBooks: true,
       books: [
-        { title: 'name of the wind', author: 'Patrick Rothfuss', age: 40, img:'assets/1.png' },
-        { title: 'the way of the kings', author: 'Brandon Sanderson', age: 45,img:'assets/2.png' },
-        { title: 'the final empire', author: 'Brandon Sanderson', age: 45, img:'assets/3.png' },
+        { title: 'name of the wind', author: 'Patrick Rothfuss', age: 40, img:'assets/1.jpg', isFav: true },
+        { title: 'the way of the kings', author: 'Brandon Sanderson', age: 45,img:'assets/2.jpg', isFav: false },
+        { title: 'the final empire', author: 'Brandon Sanderson', age: 45, img:'assets/3.jpg', isFav: true },
       ],
       x: 0,
       y: 0,
@@ -18,9 +18,9 @@ const app = Vue.createApp({
     }
   },
   methods: {
-    changeTitle(title) {
+    changeTitle(book, title) {
       console.log('Changing title...');
-      this.title = title;
+      book.title = title;
     },
     toggleShowBooks() {
       this.showBooks = !this.showBooks;
@@ -31,6 +31,9 @@ const app = Vue.createApp({
     handleMousemove(e) {
       this.x = e.offsetX;
       this.y = e.offsetY;
+    },
+    toggleFav(book) {
+      book.isFav = !book.isFav;
     }
   }
 })
