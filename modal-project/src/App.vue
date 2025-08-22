@@ -1,7 +1,7 @@
 <template>
   <h1>{{ title }}</h1>
   <p>Welcome...</p>
-  <div v-if="showModal">
+  <teleport to=".modals" v-if="showModal">
     <Modal :header="header" :text="text" :theme="theme" @close="toggleModal()" @open-modal2="openSaleModal()">
       <template v-slot:links>
         <a href="#">sign up now</a>
@@ -9,8 +9,8 @@
       </template>
       <p>Testing slots</p>
     </Modal>
-  </div>
-  <div v-if="showModal2">
+  </teleport>
+  <teleport to=".modals" v-if="showModal2">
     <Modal2 :category="category" @close="showModal2 = false">
       <h5>Items available:</h5>
       <template v-slot:list v-if="(category === 'Clothing')">
@@ -18,7 +18,7 @@
           <span><img class ="sweats" src="./assets/Sweatshirt.jpg"/><p>Sweatshirt</p></span>
       </template>
     </Modal2>
-  </div>
+  </teleport>
   <button @click.alt="toggleModal()">open modal (alt)</button>
   <input type="text" ref="name">
   <button @click="handleClick()">click me</button>
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style>
-#app {
+#app, .modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
