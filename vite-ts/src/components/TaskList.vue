@@ -1,6 +1,9 @@
 <template>
   <article class ="boxes" v-for="task in props.tasks" :key="task.id">
-    {{  task.title }}
+    <label>
+      <input type="checkbox" v-model="task.done">
+      {{ task.title }}
+    </label>
   </article>
 </template>
 
@@ -10,4 +13,6 @@ import type { Task } from "../types"
 const props = defineProps<{
   tasks: Task[]
 }>()
+
+
 </script>

@@ -43,9 +43,9 @@ button {
   color: white;
 }
 label {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  align-items: flex-start; /* keeps them left-aligned */
+  align-items: flex-start;
   text-align: left;
 }
 #invalid-helper {

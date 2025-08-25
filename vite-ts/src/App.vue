@@ -2,8 +2,12 @@
   <main>
     <h1>{{ message }}</h1> 
     <TaskForm @add-task="addATask"/>
-    <h3 style="margin:20px">There are {{ tasks.length }} {{ checkTaskLength() }}</h3>
-    <TaskList :tasks="tasks"/>
+    <h3 v-if="!tasks.length">Add a task to get started.</h3>
+    <h3 v-else>
+      There are {{ tasks.length }} {{ checkTaskLength() }}<br>
+      {{ tasksDone() }} / {{ tasks.length }} tasks completed.
+    </h3>
+    <TaskList :tasks="tasks" @toggle-done="tasksDone"/>
   </main>
 </template>
 
@@ -32,11 +36,23 @@ function checkTaskLength() {
   }
 }
 
+function tasksDone() {
+  let count = 0
+  for (const task of tasks.value) {
+    if (task.done) {
+      count++
+    }
+  }
+  return count
+}
+
 </script>
 
 <style>
 .boxes {
   text-align: left;
 }
-
+h3 {
+  margin: 20px;
+}
 </style>
