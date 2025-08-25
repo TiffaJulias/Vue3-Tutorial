@@ -5,20 +5,23 @@
     <h3 v-if="!tasks.length">Add a task to get started.</h3>
     <h3 v-else>
       There are {{ tasks.length }} {{ checkTaskLength() }}<br>
-      {{ tasksDone() }} / {{ tasks.length }} tasks completed.
+      {{ totalDone }} / {{ tasks.length }} tasks completed.
     </h3>
-    <TaskList :tasks="tasks" @toggle-done="tasksDone"/>
+    <TaskList :tasks="tasks" @toggle-done="toggleDone"/>
   </main>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 import TaskForm from "./components/TaskForm.vue"
 import TaskList from "./components/TaskList.vue"
 import type { Task } from './types'
 
 const message = ref("Tasks App")
 const tasks = ref<Task[]>([])
+
+const totalDone = computed(() => tasks
+.value.reduce((total, task) => task.done ? total +1 : total, 0))
 
 function addATask(newTask: string) {
   tasks.value.push({
@@ -36,15 +39,22 @@ function checkTaskLength() {
   }
 }
 
-function tasksDone() {
-  let count = 0
-  for (const task of tasks.value) {
-    if (task.done) {
-      count++
-    }
+function toggleDone(id: string) {
+  const task = tasks.value.find((task) => task.id === id)
+  if (task) {
+    task.done = !task.done
   }
-  return count
 }
+
+// function tasksDone() {
+//   let count = 0
+//   for (const task of tasks.value) {
+//     if (task.done) {
+//       count++
+//     }
+//   }
+//   return count
+// }
 
 </script>
 
